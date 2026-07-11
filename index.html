@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goran Manevski — Customer Solution Support Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F6F8FA;
+    --bg-panel: #FFFFFF;
+    --ink: #16202C;
+    --ink-soft: #4B5A6B;
+    --line: #DDE3EA;
+    --ok: #1E8E5A;
+    --ok-bg: #E7F5EE;
+    --warn: #B7791F;
+    --warn-bg: #FBF0DE;
+    --accent: #2F6FED;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+    --display: 'Space Grotesk', sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:840px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- Top status bar ---------- */
+  .statusbar{
+    border-bottom:1px solid var(--line);
+    background:var(--bg-panel);
+  }
+  .statusbar .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:14px;
+    padding-bottom:14px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 10px;
+    border-radius:99px;
+    background:var(--ok-bg);
+    color:var(--ok);
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+  .status-dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--ok);
+    box-shadow:0 0 0 0 rgba(30,142,90,.5);
+    animation:pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(30,142,90,.45); }
+    70%{ box-shadow:0 0 0 6px rgba(30,142,90,0); }
+    100%{ box-shadow:0 0 0 0 rgba(30,142,90,0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .status-dot{ animation:none; }
+    *{ scroll-behavior:auto !important; animation-duration:.001s !important; transition-duration:.001s !important; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:64px 0 48px; }
+  .hero .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:var(--display);
+    font-size:clamp(34px, 5.4vw, 54px);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+    margin-bottom:10px;
+  }
+  .role{
+    font-family:var(--display);
+    font-size:clamp(17px, 2.4vw, 21px);
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+  }
+  .summary{
+    max-width:620px;
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    padding:9px 16px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:var(--bg-panel);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .btn:hover{ border-color:var(--accent); transform:translateY(-1px); }
+  .btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .btn.primary{
+    background:var(--ink);
+    color:#fff;
+    border-color:var(--ink);
+  }
+  .btn.primary:hover{ background:var(--accent); border-color:var(--accent); }
+
+  /* ---------- Section headers ---------- */
+  section{ padding:40px 0; border-top:1px solid var(--line); }
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:28px;
+  }
+  .sec-head .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    padding:3px 8px;
+    border-radius:6px;
+  }
+  .sec-head h2{
+    font-family:var(--display);
+    font-size:22px;
+    font-weight:600;
+  }
+
+  /* ---------- Metrics strip ---------- */
+  .metrics{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .metric{
+    background:var(--bg-panel);
+    padding:20px 18px;
+  }
+  .metric .num{
+    font-family:var(--display);
+    font-size:28px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .metric .label{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:4px;
+    letter-spacing:.01em;
+  }
+
+  /* ---------- Log / experience ---------- */
+  .log-entry{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:20px;
+    padding:22px 0;
+    border-top:1px solid var(--line);
+    opacity:0;
+    transform:translateY(10px);
+    animation:rise .5s ease forwards;
+  }
+  .log-entry:first-child{ border-top:none; }
+  @keyframes rise{ to{ opacity:1; transform:none; } }
+
+  .log-meta{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .log-meta .id{
+    display:block;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .log-badge{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.03em;
+    padding:2px 7px;
+    border-radius:5px;
+    margin-top:8px;
+  }
+  .log-badge.active{ background:var(--ok-bg); color:var(--ok); }
+  .log-badge.resolved{ background:var(--warn-bg); color:var(--warn); }
+
+  .log-body h3{
+    font-family:var(--display);
+    font-size:17px;
+    font-weight:600;
+    margin-bottom:2px;
+  }
+  .log-body .co{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .log-body ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .log-body li{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    padding-left:16px;
+    position:relative;
+  }
+  .log-body li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    color:var(--accent);
+    font-weight:700;
+  }
+
+  @media (max-width:600px){
+    .log-entry{ grid-template-columns:1fr; gap:8px; }
+    .metrics{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- Capabilities / skills ---------- */
+  .caps{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .cap{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:8px 14px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--bg-panel);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .cap::before{
+    content:"";
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--ok);
+  }
+
+  /* ---------- Education ---------- */
+  .edu-item{
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .edu-item:first-child{ border-top:none; }
+  .edu-item h3{
+    font-family:var(--display);
+    font-size:16px;
+    font-weight:600;
+  }
+  .edu-item p{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px 0 48px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="statusbar">
+    <div class="wrap">
+      <span class="status-pill"><span class="status-dot"></span>OPEN TO EU OPPORTUNITIES</span>
+      <span>SKOPJE, NORTH MACEDONIA · UTC+1</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="hero" style="border-top:none;">
+      <div class="eyebrow">// profile</div>
+      <h1>Goran Manevski</h1>
+      <div class="role">Customer Solution Support Engineer</div>
+      <p class="summary">
+        I troubleshoot complex SaaS platforms, API integrations, and AWS-hosted systems for enterprise clients — turning log files and failed requests into resolved tickets and calmer customers. Comfortable being the technical point of contact when things break and engineering needs a clear, accurate handoff.
+      </p>
+      <div class="contact-row">
+        <a class="btn primary" href="mailto:goksman@gmail.com">✉ goksman@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/goran-man" target="_blank" rel="noopener">in/goran-man ↗</a>
+      </div>
+    </section>
+
+    <section id="metrics">
+      <div class="sec-head">
+        <span class="tag">SLA</span>
+        <h2>Track record</h2>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="num">30%</div>
+          <div class="label">FASTER ISSUE RESOLUTION</div>
+        </div>
+        <div class="metric">
+          <div class="num">20+</div>
+          <div class="label">CLIENT AWS ENVIRONMENTS MANAGED</div>
+        </div>
+        <div class="metric">
+          <div class="num">15+</div>
+          <div class="label">RELEASES TESTED PRE-LAUNCH</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="sec-head">
+        <span class="tag">LOG</span>
+        <h2>Experience</h2>
+      </div>
+
+      <div class="log-entry" style="animation-delay:.02s">
+        <div class="log-meta">
+          <span class="id">#EXP-01</span>
+          OCT 2024 — PRESENT
+          <span class="log-badge active">ACTIVE</span>
+        </div>
+        <div class="log-body">
+          <h3>Customer Solution Support Engineer</h3>
+          <div class="co">Mediagenix · Skopje</div>
+          <ul>
+            <li>Troubleshoot complex software issues through log analysis and API debugging</li>
+            <li>Manage AWS environments — updates, monitoring, and issue resolution</li>
+            <li>Own support tickets end-to-end while holding SLA compliance</li>
+            <li>Act as technical point of contact for enterprise clients</li>
+            <li>Collaborate directly with engineering to resolve production issues</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-entry" style="animation-delay:.06s">
+        <div class="log-meta">
+          <span class="id">#EXP-02</span>
+          JUL 2023 — OCT 2024
+          <span class="log-badge resolved">RESOLVED</span>
+        </div>
+        <div class="log-body">
+          <h3>Software Support Specialist</h3>
+          <div class="co">Mediagenix · Skopje</div>
+          <ul>
+            <li>Cut resolution time by 30% over six months through new troubleshooting approaches</li>
+            <li>Managed AWS updates across 20+ client environments</li>
+            <li>Tested 15+ software releases, catching high-priority issues ahead of SLA deadlines</li>
+            <li>Partnered with cross-functional teams to improve product functionality</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-entry" style="animation-delay:.10s">
+        <div class="log-meta">
+          <span class="id">#EXP-03</span>
+          AUG 2021 — JUL 2023
+          <span class="log-badge resolved">RESOLVED</span>
+        </div>
+        <div class="log-body">
+          <h3>Social Media Marketing Specialist</h3>
+          <div class="co">OXO Production · Skopje</div>
+          <ul>
+            <li>Built and ran content calendars aligned to campaign timelines</li>
+            <li>Designed social strategies to grow brand visibility and engagement</li>
+            <li>Produced graphics and video content using Adobe Creative Suite and Canva</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-entry" style="animation-delay:.14s">
+        <div class="log-meta">
+          <span class="id">#EXP-04</span>
+          APR 2016 — JUN 2021
+          <span class="log-badge resolved">RESOLVED</span>
+        </div>
+        <div class="log-body">
+          <h3>Content Writer</h3>
+          <div class="co">Good Mood Media · Skopje</div>
+          <ul>
+            <li>Wrote long-running content across five years for the Good Mood Media team</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-entry" style="animation-delay:.18s">
+        <div class="log-meta">
+          <span class="id">#EXP-05</span>
+          OCT 2007 — JUL 2014
+          <span class="log-badge resolved">RESOLVED</span>
+        </div>
+        <div class="log-body">
+          <h3>Customer Service Specialist</h3>
+          <div class="co">Anhoch · Skopje</div>
+          <ul>
+            <li>Ran daily operations of the customer service department</li>
+            <li>Resolved escalated complaints with professionalism and empathy</li>
+            <li>Coached the team through regular performance reviews</li>
+            <li>Tracked KPIs and adjusted team process to hit them</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="sec-head">
+        <span class="tag">CAP</span>
+        <h2>Capabilities</h2>
+      </div>
+      <div class="caps">
+        <span class="cap">API Troubleshooting</span>
+        <span class="cap">Postman</span>
+        <span class="cap">Incident Management</span>
+        <span class="cap">AWS</span>
+        <span class="cap">Log Analysis</span>
+        <span class="cap">SaaS Support</span>
+        <span class="cap">SLA Management</span>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="sec-head">
+        <span class="tag">EDU</span>
+        <h2>Education</h2>
+      </div>
+      <div class="edu-item">
+        <h3>Bachelor of Education — English Language and Literature</h3>
+        <p>Ss. Cyril and Methodius University of Skopje</p>
+      </div>
+      <div class="edu-item">
+        <h3>Bachelor of Arts — English Language and Literature</h3>
+        <p>Ss. Cyril and Methodius University, Skopje, Macedonia</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+      <span>© <span id="year"></span> Goran Manevski</span>
+      <span>Built from LinkedIn profile · goksman@gmail.com</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
