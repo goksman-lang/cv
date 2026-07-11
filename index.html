@@ -148,14 +148,14 @@
 
   .avatar-frame{
     width: 132px; height: 132px;
-    border-radius: 16px;
-    padding: 4px;
+    border-radius: 18px;
+    padding: 8px;
     background: linear-gradient(145deg, var(--amber), var(--teal));
     flex-shrink: 0;
   }
   .avatar-frame img{
     width: 100%; height: 100%;
-    border-radius: 13px;
+    border-radius: 12px;
     display:block;
     object-fit: cover;
     filter: saturate(0.92);
@@ -182,7 +182,8 @@
     color: var(--text-dim);
     background: var(--bg-panel);
     border: 1px solid var(--line-soft);
-    padding: 8px 12px;
+    padding: 11px 15px;
+    line-height: 1.4;
     border-radius: 8px;
   }
   .meta-field svg{ width:14px; height:14px; flex-shrink:0; color: var(--text-faint); }
@@ -439,16 +440,61 @@
     .dot-live{ animation:none; }
   }
 
+  @media print{
+    .topbar{ position: static; }
+    .entry, .edu-card, .contact-panel, .stats, .skill{
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    section{ break-inside: auto; }
+    .sec-head{
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    body{ background: var(--bg) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
   /* ---------- Responsive ---------- */
   @media (max-width: 720px){
+    .wrap{ padding: 0 18px; }
     nav{ display:none; }
+    .hero{ padding: 40px 0 32px; }
+    .ticket-id{
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      font-size: 11px;
+      margin-bottom: 18px;
+    }
     .hero-grid{ grid-template-columns: 1fr; }
-    .avatar-frame{ width: 96px; height: 96px; order:-1; margin-bottom: 4px; }
-    .stats{ grid-template-columns: 1fr; }
-    .skills-grid{ grid-template-columns: 1fr; }
+    .hero-grid > div:last-child{
+      display:flex; flex-direction:column; align-items:center;
+    }
+    .avatar-frame{ width: 108px; height: 108px; order:-1; margin-bottom: 6px; }
+    .summary{ font-size: 15px; max-width: none; }
+    .meta-row{ gap: 8px; margin-bottom: 28px; }
+    .meta-field{ font-size: 12px; padding: 10px 13px; }
+    .stats{
+      grid-template-columns: 1fr;
+    }
+    .stat{ padding: 16px 16px; }
+    section{ padding: 40px 0; }
+    .sec-head{ margin-bottom: 26px; }
+    .sec-head h2{ font-size: 21px; }
+    .entry{ margin-bottom: 36px; }
+    .entry-title{ font-size: 17px; }
+    .skills-grid{ grid-template-columns: 1fr; gap: 16px; }
     .edu-card{ flex-direction: column; }
     .edu-when{ text-align:left; }
-    .contact-panel{ padding: 30px 22px; }
+    .contact-panel{ padding: 28px 20px; }
+    .contact-panel h2{ font-size: 25px; }
+    .cta-row{ flex-direction: column; }
+    .cta-row .btn{ justify-content:center; }
+  }
+
+  @media (max-width: 400px){
+    h1{ font-size: 34px; }
+    .ticket-id{ font-size: 10px; }
+    .stat .num{ font-size: 24px; }
   }
 </style>
 </head>
